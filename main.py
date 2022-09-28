@@ -66,6 +66,23 @@ def updateData(db):
     print("{} Data Updated Successfully".format(cursor.rowcount))
 
 
+# delete data from database
+def deleteData(db):
+    cursor = db.cursor()
+    # show data before data has be delete
+    showData(db)
+    idDb = input("Choose the Id you want delete -> ")
+    sql = "DELETE FROM mahasiswapy WHERE id = %s"
+    value = (idDb, )
+    # execute statements to communicate with the MySQL database
+    cursor.execute(sql, value)
+    # commit statement sql
+    db.commit()
+    print("{} Data Deleted Successfully".format(cursor.rowcount))
+
+
+
+
 def showMenu(db):
     print("--------------------------")
     print("Simple Program With Python")
@@ -91,7 +108,7 @@ def showMenu(db):
     elif(choose == "3"):
         updateData(db)
     elif(choose == "4"):
-        print("anda pilih 4")
+        deleteData(db)
     elif(choose == "5"):
         print("anda pilih 5")
     elif(choose == "0"):
