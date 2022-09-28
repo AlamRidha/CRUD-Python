@@ -45,6 +45,27 @@ def showData(db):
             print(data)
 
 
+# update data from database
+def updateData(db):
+    cursor = db.cursor()
+    # show data first to see where data must be update
+    showData(db)
+    print("===================================")
+    # take new data from user
+    customerId = input("Enter Id -> ")
+    name = input("Enter New Name    : ")
+    address = input("Enter New Address : ")
+    major = input("Enter New Major   : ")
+
+    sql = "UPDATE mahasiswapy SET nama = %s, alamat = %s, jurusan = %s WHERE id = %s"
+    value = (name, address, major, customerId)
+    # execute statements to communicate with the MySQL database
+    cursor.execute(sql, value)
+    # commit statement sql
+    db.commit()
+    print("{} Data Updated Successfully".format(cursor.rowcount))
+
+
 def showMenu(db):
     print("--------------------------")
     print("Simple Program With Python")
@@ -68,7 +89,7 @@ def showMenu(db):
     elif(choose == "2"):
         showData(db)
     elif(choose == "3"):
-        print("anda pilih 3")
+        updateData(db)
     elif(choose == "4"):
         print("anda pilih 4")
     elif(choose == "5"):
