@@ -11,6 +11,21 @@ db = mysql.connector.connect(
 )
 
 
+# insert data to database
+def insertData(db):
+    name = input("Enter Name    : ")
+    address = input("Enter Address : ")
+    major = input("Enter Major   : ")
+    value = (name, address, major)
+    # execute statements to communicate with the MySQL database
+    cursor = db.cursor()
+    sql = "INSERT INTO mahasiswapy (nama, alamat, jurusan) VALUES (%s, %s, %s)"
+    cursor.execute(sql, value)
+    # commit statement sql
+    db.commit()
+    print("{} Data Added Successfully".format(cursor.rowcount))
+
+
 def showMenu(db):
     print("--------------------------")
     print("Simple Program With Python")
@@ -26,11 +41,11 @@ def showMenu(db):
     choose = input("Choose Menu -> ")
 
     # clear screen
-    os.system("clear")
+    os.system("cls")
 
     # option menu
     if(choose == "1"):
-        print("anda pilih 1")
+        insertData(db)
     elif(choose == "2"):
         print("anda pilih 2")
     elif(choose == "3"):
