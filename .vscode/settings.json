@@ -1,5 +1,8 @@
 {
     "workbench.colorTheme": "Night Owl",
     "editor.fontSize": 18,
-    "workbench.iconTheme": "vscode-icons"
+    "editor.lineHeight": 20,
+    "workbench.iconTheme": "vscode-icons",
+    "editor.fontFamily": "Source Code Pro, 'Courier New', monospace",
+    "editor.defaultFormatter": "HookyQR.beautify"
 }
