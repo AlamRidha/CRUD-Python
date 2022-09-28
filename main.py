@@ -37,7 +37,7 @@ def showData(db):
     # with the above function,the data list will be returned as a tuple
     dataDb = cursor.fetchall()
 
-    # cek if data is empty
+    # check if data is empty
     if cursor.rowcount < 0:
         print("Data is empty")
     else:
@@ -81,6 +81,23 @@ def deleteData(db):
     print("{} Data Deleted Successfully".format(cursor.rowcount))
 
 
+# search data from database
+def searchData(db):
+    cursor = db.cursor()
+    # take the keyword for searching
+    keyword = input("Enter Keyword -> ")
+    sql = "SELECT * FROM mahasiswapy WHERE nama LIKE %s OR alamat LIKE %s OR jurusan LIKE %s"
+    value = ("%{}%".format(keyword), "%{}%".format(keyword), "%{}%".format(keyword))
+    # execute statements to communicate with the MySQL database
+    cursor.execute(sql, value)
+    result = cursor.fetchall()
+
+    # check data found or not
+    if cursor.rowcount < 0:
+        print("Data Not Found")
+    else:
+        for data in result:
+            print(data)
 
 
 def showMenu(db):
@@ -110,7 +127,7 @@ def showMenu(db):
     elif(choose == "4"):
         deleteData(db)
     elif(choose == "5"):
-        print("anda pilih 5")
+        searchData(db)
     elif(choose == "0"):
         exit()
     else:
