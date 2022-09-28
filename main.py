@@ -26,6 +26,25 @@ def insertData(db):
     print("{} Data Added Successfully".format(cursor.rowcount))
 
 
+# show data from database
+def showData(db):
+    cursor = db.cursor()
+    sql = "SELECT * FROM mahasiswapy"
+    cursor.execute(sql)
+    # fetchall()    -> take all data from database
+    # fetchmany(10) -> take 10 data from database
+    # fetchone()    -> take first data only
+    # with the above function,the data list will be returned as a tuple
+    dataDb = cursor.fetchall()
+
+    # cek if data is empty
+    if cursor.rowcount < 0:
+        print("Data is empty")
+    else:
+        for data in dataDb:
+            print(data)
+
+
 def showMenu(db):
     print("--------------------------")
     print("Simple Program With Python")
@@ -47,7 +66,7 @@ def showMenu(db):
     if(choose == "1"):
         insertData(db)
     elif(choose == "2"):
-        print("anda pilih 2")
+        showData(db)
     elif(choose == "3"):
         print("anda pilih 3")
     elif(choose == "4"):
